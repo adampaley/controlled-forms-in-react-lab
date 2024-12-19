@@ -11,6 +11,15 @@ const Bookshelf = (props) => {
         author: '',
     }
   )
+  const [errors, setErrors] = useState(
+    {
+        title: '',
+        author: '',
+    }
+  )
+
+  // validation logic
+  const formHasMissingData = !Object.values(newBooks).every(Boolean)
   
   // handler functions
   const handleInputChange = (e) => {
@@ -33,7 +42,7 @@ const Bookshelf = (props) => {
     <div className="bookshelfDiv">
         <div className="formDiv">
             <h3>Add a Book</h3>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="title">Book Title: </label>
                 <input 
                   type="text"
@@ -50,7 +59,7 @@ const Bookshelf = (props) => {
                   value={newBooks.author}
                   onChange={handleInputChange} 
                 />
-                <button type="submit" onClick={handleSubmit}>Add to your Library</button>
+                <button type="submit" disabled={formHasMissingData}>Add to your Library</button>
             </form>
         </div>
         <div className="bookCardsDiv">Book cards will display here</div>
