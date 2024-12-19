@@ -12,6 +12,23 @@ const Bookshelf = (props) => {
     }
   )
   
+  // handler functions
+  const handleInputChange = (e) => {
+    setNewBooks({...newBooks, [e.target.name]: e.target.value})
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setBooks([...books, newBooks])
+    setNewBooks(
+        {
+            title: '',
+            author: '',
+        }
+    )
+
+  }
+
   return (
     <div className="bookshelfDiv">
         <div className="formDiv">
